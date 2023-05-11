@@ -38,8 +38,8 @@ export default () => {
             <input type="submit" value={newAccount ? "Create Account" : "Log In"}/>
         </form>
         <div>
-            <button>Continue with Google</button>
-            <button>Continue with Github</button>
+            <button name="google">Continue with Google</button>
+            <button name="github">Continue with Github</button>
         </div>
     </div>
     )

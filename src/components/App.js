@@ -4,13 +4,20 @@ import React, { useEffect, useState } from "react";
 
 function App() {  
   const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    authService.onAuthStateChanged((user) => console.log(user))
+    authService.onAuthStateChanged((user) => {
+      if(user){
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      setInit(true)
+    });
   }, [])
   return (
     <>
-      <AppRouter isLoggedIn={isLoggedIn}/>
+      {init ? <AppRouter isLoggedIn={isLoggedIn}/> : 'Initializing'}
       <footer>&copy; {new Date().getFullYear()} twitter</footer>
     </>
   );
